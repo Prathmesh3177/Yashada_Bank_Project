@@ -1,0 +1,197 @@
+{
+  "site": {
+    "name": "Yashada Multistate Co-op Credit Society",
+    "tagline": "Multi-State Cooperative Credit Society in Maharashtra"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "gallery": "Gallery",
+    "chairman": "Chairman Message",
+    "board": "Board of Directors",
+    "deposits": "Deposit Schemes",
+    "loans": "Loan Services",
+    "members": "Member Services",
+    "faq": "FAQ",
+    "downloads": "Downloads",
+    "news": "News & Notices",
+    "branches": "Branch Locator",
+    "contact": "Contact Us",
+    "complaint": "Complaint Form"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "applyNow": "Apply Now",
+    "viewAll": "View All",
+    "submit": "Submit",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "date": "Date",
+    "openMap": "Open in Google Maps",
+    "viewOnFacebook": "View on Facebook",
+    "interestRate": "Interest Rate",
+    "documentsRequired": "Documents Required"
+  },
+  "header": {
+    "menuAria": "Toggle menu"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "copyright": "All rights reserved.",
+    "addressLine": "Yashada Heights, Kakade Building,\nNaikwadi Nagar, near Shri Visarjan Vihiri,\nDharashiv - 413501",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "home": {
+    "title": "Trusted Relations, Prosperous Future",
+    "subtitle": "Reliable cooperative financial services for members across Maharashtra.",
+    "ctaPrimary": "Open Account",
+    "ctaSecondary": "Apply for Loan",
+    "quickServices": "Quick Services",
+    "quick": {
+      "savings": "Savings Account",
+      "fixedDeposit": "Fixed Deposit",
+      "loan": "Loan Services",
+      "mobile": "Mobile Banking",
+      "memberSupport": "Member Support"
+    },
+    "depositOverview": "Deposit Schemes Overview",
+    "deposits": {
+      "recurring": "Recurring Deposit",
+      "fixed": "Fixed Deposit",
+      "monthly": "Monthly Deposit",
+      "desc": "Secure returns with flexible tenure options."
+    },
+    "loanOverview": "Loan Schemes Overview",
+    "emiPreview": "Loan EMI Calculator Preview",
+    "loanDesc": "Quick processing with transparent terms.",
+    "announcements": "Latest Announcements",
+    "facebookTitle": "Latest Updates From Facebook",
+    "branchPreview": "Branch Locator Preview",
+    "contactCta": "Need financial guidance? Contact our team today.",
+    "logoAlt": "Yashada banking",
+    "whyChoose": {
+      "title": "Why Choose Yashada Bank",
+      "items": {
+        "trustedTitle": "Trusted Cooperative Banking",
+        "trustedSubtitle": "Member-first transparent operations",
+        "networkTitle": "Strong Branch Network",
+        "networkSubtitle": "Local support across active branches",
+        "fastTitle": "Fast Processing",
+        "fastSubtitle": "Quick turnarounds for services and loans",
+        "relationshipTitle": "Relationship Focused",
+        "relationshipSubtitle": "Personalized support for every member",
+        "ratesTitle": "Competitive Rates",
+        "ratesSubtitle": "Attractive returns and fair lending terms",
+        "digitalTitle": "Digital Convenience",
+        "digitalSubtitle": "Improved service accessibility on mobile"
+      }
+    }
+  },
+  "about": {
+    "heading": "About Us",
+    "intro": "We are committed to trust-led cooperative banking and inclusive economic growth.",
+    "missionTitle": "Our Mission",
+    "mission": "To deliver transparent and member-first financial solutions to farmers, workers, women, youth, and senior citizens.",
+    "visionTitle": "Our Vision",
+    "vision": "To become Maharashtra's most trusted cooperative credit society for responsible lending and community growth."
+  },
+  "chairman": {
+    "heading": "Chairman Message",
+    "name": "Prof. Sudhir Dattatray Saste",
+    "designation": "Founder & Chairman",
+    "message": "For more than a decade, our society has prioritized member trust, service quality, and disciplined financial growth. We remain committed to simple processes, faster service, and a stronger cooperative movement."
+  },
+  "board": {
+    "heading": "Board of Directors",
+    "roles": {
+      "chairman": "Chairman",
+      "viceChairperson": "Vice Chairperson",
+      "director": "Director",
+      "independentDirector": "Independent Director",
+      "managingDirector": "Managing Director"
+    }
+  },
+  "deposits": {
+    "heading": "Deposit Schemes",
+    "description": "Secure your savings with flexible tenure and competitive rates.",
+    "calculator": "Deposit Interest Calculator",
+    "principal": "Deposit Amount",
+    "rate": "Interest Rate (%)",
+    "years": "Tenure (Years)",
+    "maturity": "Maturity Amount",
+    "interestBenefit": "Interest benefit",
+    "recurring": "Recurring Deposit",
+    "fixed": "Fixed Deposit",
+    "senior": "Senior Citizen Deposit"
+  },
+  "loan": {
+    "gold": "Gold Loan",
+    "personal": "Personal Loan",
+    "vehicle": "Vehicle Loan",
+    "business": "Business Loan",
+    "education": "Education Loan",
+    "home": "Home Loan",
+    "description": "Quick processing with transparent terms."
+  },
+  "loans": {
+    "heading": "Loan Services",
+    "description": "Choose from personal, business, gold, vehicle, and home loans.",
+    "calculator": "Loan EMI Calculator",
+    "amount": "Loan Amount",
+    "rate": "Interest Rate (%)",
+    "tenure": "Tenure (Months)",
+    "emi": "Estimated EMI"
+  },
+  "members": {
+    "heading": "Member Services",
+    "description": "Explore member support services and common questions.",
+    "faq": "FAQ Section",
+    "notice": "Notice Board"
+  },
+  "downloads": {
+    "heading": "Downloads",
+    "description": "Download important application forms.",
+    "membership": "Membership Form",
+    "loan": "Loan Application Form",
+    "kyc": "KYC Update Form",
+    "download": "Download Form"
+  },
+  "news": {
+    "heading": "News & Notices",
+    "description": "Recent updates, announcements, and official notices.",
+    "announcements": "Latest Announcements",
+    "notices": "Notice Board"
+  },
+  "branches": {
+    "heading": "Branch Locator",
+    "description": "Find branch addresses, contact details, and map locations.",
+    "mapTitle": "Branch Map"
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "description": "Reach out to our support team for account, loan, or service queries.",
+    "name": "Full Name",
+    "message": "Message",
+    "officeAddress": "Yashada Heights, Kakade Building,\nNaikwadi Nagar, near Shri Visarjan Vihiri,\nDharashiv - 413501"
+  },
+  "complaint": {
+    "heading": "Complaint Form",
+    "description": "Register your complaint and we will respond promptly.",
+    "memberId": "Member ID",
+    "category": "Complaint Category",
+    "details": "Complaint Details",
+    "categoryOptions": {
+      "account": "Account service",
+      "loan": "Loan process",
+      "digital": "Digital banking",
+      "other": "Other"
+    }
+  },
+  "facebook": {
+    "imageAlt": "Facebook update",
+    "iframeTitle": "Yashada Facebook page"
+  }
+}

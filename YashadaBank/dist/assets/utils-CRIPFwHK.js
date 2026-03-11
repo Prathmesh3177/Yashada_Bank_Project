@@ -1,0 +1,1 @@
+const e=t=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(t),o=(t,r)=>t.length<=r?t:`${t.slice(0,r)}...`,s=(t,r,n)=>{const c=r/1200;if(c===0)return t/n;const a=(1+c)**n;return t*c*a/(a-1)},u=(t,r,n)=>{const c=r/100;return t*(1+c*n)};export{s as a,u as c,e as f,o as t};

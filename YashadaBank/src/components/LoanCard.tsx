@@ -1,5 +1,6 @@
 import type { ComponentType, SVGProps } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 type LoanCardProps = {
   loanTypeMr: string;
@@ -12,6 +13,7 @@ type LoanCardProps = {
 const LoanCard = ({ loanTypeMr, loanTypeEn, descriptionMr, descriptionEn, Icon }: LoanCardProps) => {
   const { language } = useLanguage();
   const isMarathi = language === 'mr';
+  const { t } = useTranslation();
 
   return (
     <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -25,7 +27,7 @@ const LoanCard = ({ loanTypeMr, loanTypeEn, descriptionMr, descriptionEn, Icon }
           type="button"
           className="rounded-lg bg-brand-primary px-4 py-2 text-sm font-medium text-white shadow-md transition hover:bg-blue-700"
         >
-          {isMarathi ? 'अधिक माहिती' : 'Learn More'}
+          {t('common.learnMore')}
         </button>
       </div>
     </article>

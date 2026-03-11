@@ -1,50 +1,80 @@
-import { useLanguage } from '../context/LanguageContext';
+import { NavLink } from 'react-router-dom';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import bankLogo from '../assets/bank_logo.png';
 
 const Footer = () => {
-  const { language } = useLanguage();
-  const isMarathi = language === 'mr';
+  const { t } = useTranslation();
+
+  const quickLinks = [
+    { to: '/', label: t('nav.home') },
+    { to: '/about-us', label: t('nav.about') },
+    { to: '/member-services', label: t('nav.services') },
+    { to: '/contact-us', label: t('nav.contact') }
+  ];
+
+  const serviceLinks = [
+    { to: '/deposit-schemes', label: t('nav.deposits') },
+    { to: '/loan-services', label: t('nav.loans') },
+    { to: '/member-services', label: 'Member Support' }
+  ];
 
   return (
-    <footer className="mt-16 bg-brand-primary text-white">
-      <div className="bank-container grid gap-8 py-10 md:grid-cols-3">
+    <footer className="mt-16 bg-brand-dark text-white">
+      <div className="bank-container grid gap-8 py-12 sm:grid-cols-2 xl:grid-cols-4">
         <div>
-          <h3 className="text-lg font-bold">
-            {isMarathi ? 'यशदा मल्टिस्टेट को.ऑप.क्रेडिट' : 'Yashada Multistate Co-op Credit'}
-          </h3>
-          <p className="mt-2 text-sm text-blue-100">
-            {isMarathi
-              ? 'ग्राहकांचा विश्वास आणि सर्वसामान्यांच्या आर्थिक विकासासाठी समर्पित संस्था.'
-              : 'Dedicated to trust-led banking and inclusive financial growth.'}
-          </p>
+          <img src={bankLogo} alt="Yashada Logo" className="h-14 w-28 rounded-md bg-white p-1 object-contain" loading="lazy" />
+          <h2 className="mt-3 text-xl font-bold">{t('site.name')}</h2>
+          <p className="mt-3 text-base text-red-100">{t('site.tagline')}</p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-blue-200">
-            {isMarathi ? 'मुख्य सेवा' : 'Core Services'}
-          </h4>
-          <ul className="mt-3 space-y-2 text-sm text-blue-50">
-            <li>{isMarathi ? 'बचत खाते' : 'Savings Account'}</li>
-            <li>{isMarathi ? 'मुदत ठेवी' : 'Fixed Deposits'}</li>
-            <li>{isMarathi ? 'कर्ज सेवा' : 'Loan Services'}</li>
-            <li>{isMarathi ? 'डिजिटल बँकिंग' : 'Digital Banking'}</li>
+          <h3 className="text-base font-semibold uppercase tracking-wide text-red-200">Quick Links</h3>
+          <ul className="mt-3 space-y-2 text-base text-red-100">
+            {quickLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink to={link.to} className="transition hover:text-white">
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-blue-200">
-            {isMarathi ? 'मुख्य कार्यालय पत्ता' : 'Head Office Address'}
-          </h4>
-          <p className="mt-3 text-sm text-blue-50">
-            {isMarathi
-              ? 'यशदा हाईटस्, काकडे बिल्डींग, नाईकवाडी नगर, श्री विसर्जन विहीरी शेजारी धाराशिव -413501'
-              : 'Yashada Heights, Kakade Building, Naikwadi Nagar, near Shri Visarjan Vihiri, Dharashiv - 413501'}
-          </p>
-          <p className="mt-1 text-sm text-blue-50">{isMarathi ? 'फोन' : 'Phone'}: +91 12345 67890</p>
-          <p className="mt-1 text-sm text-blue-50">{isMarathi ? 'ईमेल' : 'Email'}: info@yashadabank.in</p>
+          <h3 className="text-base font-semibold uppercase tracking-wide text-red-200">Services</h3>
+          <ul className="mt-3 space-y-2 text-base text-red-100">
+            {serviceLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink to={link.to} className="transition hover:text-white">
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-base font-semibold uppercase tracking-wide text-red-200">{t('nav.contact')}</h3>
+          <div className="mt-3 space-y-3 text-base text-red-100">
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4" />
+              <p>+91 9881059007</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4" />
+              <p>yashadamultistate@yahoo.in</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+              <p className="whitespace-pre-line">{t('footer.addressLine')}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="border-t border-blue-700 py-4 text-center text-xs text-blue-100">
-        © 2026 {isMarathi ? 'यशदा मल्टिस्टेट को.ऑप.क्रेडिट. सर्व हक्क राखीव.' : 'Yashada Multistate Co-op Credit. All rights reserved.'}
+
+      <div className="border-t border-red-700 py-4 text-center text-xs text-red-100">
+        © 2026 Yashada Multistate Cooperative Credit Society. All Rights Reserved
       </div>
     </footer>
   );

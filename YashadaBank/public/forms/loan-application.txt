@@ -1,0 +1,13 @@
+Yashada Multistate Cooperative Credit Society
+Loan Application Form
+
+1. Applicant Name:
+2. Loan Type:
+3. Requested Amount:
+4. Tenure (months):
+5. Monthly Income:
+
+Checklist:
+- Identity Proof
+- Address Proof
+- Income Documents

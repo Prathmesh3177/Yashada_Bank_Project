@@ -1,0 +1,1 @@
+import{j as t}from"./index-XQnTkVP9.js";const a=({title:x,subtitle:e})=>t.jsxs("div",{children:[t.jsx("h2",{className:"text-3xl font-bold text-brand-darkText md:text-4xl",children:x}),e?t.jsx("p",{className:"mt-2 text-base text-brand-secondaryText md:text-lg",children:e}):null]});export{a as S};

@@ -1,129 +1,133 @@
-import { useLanguage } from '../context/LanguageContext';
-
-const branches = [
-  {
-    nameMr: 'धाराशिव मुख्य शाखा',
-    nameEn: 'Dharashiv Main Branch',
-    addressMr: 'यशदा हाईटस्, काकडे बिल्डींग, नाईकवाडी नगर, श्री विसर्जन विहीरी शेजारी धाराशिव -413501',
-    addressEn: 'Yashada Heights, Kakade Building, Naikwadi Nagar, near Shri Visarjan Vihiri, Dharashiv - 413501',
-    phone: '+91 12345 67890'
-  },
-  {
-    nameMr: 'तुळजापूर शाखा',
-    nameEn: 'Tuljapur Branch',
-    addressMr: 'बस स्टँड जवळ, तुळजापूर, महाराष्ट्र',
-    addressEn: 'Near Bus Stand, Tuljapur, Maharashtra',
-    phone: '+91 98765 43210'
-  },
-  {
-    nameMr: 'कळंब शाखा',
-    nameEn: 'Kalamb Branch',
-    addressMr: 'मुख्य बाजारपेठ, कळंब, महाराष्ट्र',
-    addressEn: 'Main Market, Kalamb, Maharashtra',
-    phone: '+91 99887 77665'
-  },
-  {
-    nameMr: 'भूम शाखा',
-    nameEn: 'Bhoom Branch',
-    addressMr: 'नगर रोड, भूम, महाराष्ट्र',
-    addressEn: 'Nagar Road, Bhoom, Maharashtra',
-    phone: '+91 90909 80808'
-  }
-];
+import type { FormEvent } from 'react';
+import { Mail, MapPin, Phone, ShieldAlert } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import PageHero from '../components/PageHero';
+import Card from '../components/Card';
+import SectionTitle from '../components/SectionTitle';
+import BranchGrid from '../components/BranchGrid';
+import FadeInSection from '../components/FadeInSection';
+import { useSeo } from '../hooks/useSeo';
 
 const Contact = () => {
-  const { language } = useLanguage();
-  const isMarathi = language === 'mr';
+  const { t } = useTranslation();
+  const inputClass =
+    'mt-1.5 w-full rounded-xl border border-red-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20';
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    form.reset();
+  };
+
+  useSeo({
+    title: 'Contact Us | Yashada Bank',
+    description: 'Contact Yashada Multistate Cooperative Credit Society for account and loan support.',
+    path: '/contact-us'
+  });
 
   return (
-    <section className="bank-container py-12 md:py-16">
-      <div className="grid items-center gap-8 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary p-8 text-white shadow-card lg:grid-cols-2">
-        <div>
-          <h1 className="text-3xl font-extrabold leading-tight md:text-4xl">{isMarathi ? 'संपर्क करा' : 'Contact Us'}</h1>
-          <p className="mt-3 text-sm text-blue-100 md:text-base">
-            {isMarathi
-              ? 'आपल्या प्रश्नांसाठी आणि माहितीसाठी आमची टीम नेहमी तत्पर आहे.'
-              : 'Our team is always ready to assist with your questions and information needs.'}
-          </p>
-        </div>
+    <div className="bank-container space-y-10 py-10">
+      <PageHero title={t('contact.heading')} description={t('contact.description')} />
 
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-5">
-          <div className="flex h-56 items-center justify-center rounded-xl border border-dashed border-white/40 text-sm text-blue-100">
-            {isMarathi ? 'संपर्क बॅनर प्रतिमा' : 'Contact Banner Image'}
+      <FadeInSection>
+        <section className="grid gap-6 xl:grid-cols-2">
+          <Card className="rounded-3xl p-6 shadow-lg">
+            <h2 className="text-xl font-bold text-brand-darkText">{t('nav.contact')}</h2>
+            <p className="mt-4 text-sm text-brand-secondaryText">कार्यरत शाखा</p>
+            <h3 className="mt-1 text-lg font-bold text-brand-darkText">धाराशिव (मुख्य शाखा)</h3>
+            <div className="mt-5 space-y-4 text-sm text-brand-secondaryText">
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-primary" />
+                <p className="whitespace-pre-line">{t('contact.officeAddress')}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="h-5 w-5 shrink-0 text-brand-primary" />
+                <p>+91 9881059007</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="h-5 w-5 shrink-0 text-brand-primary" />
+                <p>yashadamultistate@yahoo.in</p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="rounded-3xl p-6 shadow-lg">
+            <div className="mb-4 flex items-center gap-2">
+              <ShieldAlert className="h-5 w-5 text-brand-primary" />
+              <h2 className="text-xl font-bold text-brand-darkText">Complaint Form</h2>
+            </div>
+            <form className="grid gap-4 md:grid-cols-2" onSubmit={handleSubmit}>
+              <label className="text-sm text-brand-secondaryText">
+                Full Name
+                <input required className={inputClass} />
+              </label>
+              <label className="text-sm text-brand-secondaryText">
+                Mobile Number
+                <input required type="tel" className={inputClass} />
+              </label>
+              <label className="text-sm text-brand-secondaryText md:col-span-2">
+                Email
+                <input required type="email" className={inputClass} />
+              </label>
+              <label className="text-sm text-brand-secondaryText md:col-span-2">
+                Complaint Type
+                <select required defaultValue="" className={inputClass}>
+                  <option value="" disabled>
+                    Select complaint type
+                  </option>
+                  <option>{t('complaint.categoryOptions.account')}</option>
+                  <option>{t('complaint.categoryOptions.loan')}</option>
+                  <option>{t('complaint.categoryOptions.digital')}</option>
+                  <option>{t('complaint.categoryOptions.other')}</option>
+                </select>
+              </label>
+              <label className="text-sm text-brand-secondaryText md:col-span-2">
+                Message
+                <textarea required rows={4} className={inputClass} />
+              </label>
+              <button
+                type="submit"
+                className="w-fit rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+              >
+                {t('common.submit')}
+              </button>
+            </form>
+          </Card>
+        </section>
+      </FadeInSection>
+
+      <FadeInSection>
+        <section>
+          <SectionTitle title="आमची मुख्य शाखा (Main Branch Location)" />
+          <div className="mt-6 overflow-hidden rounded-3xl border border-red-100 bg-white p-4 shadow-card">
+            <iframe
+              title="Main Branch Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3790.467662956637!2d76.03578217474092!3d18.188420682841855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5a3d32828fb1f%3A0xe0d0bf8f2cd1caf6!2sYashada%20multi-state%20co-op!5e0!3m2!1sen!2sin!4v1773251013053!5m2!1sen!2sin"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="rounded-2xl"
+            />
           </div>
-        </div>
-      </div>
+        </section>
+      </FadeInSection>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <article className="bank-card">
-          <h2 className="text-xl font-semibold text-brand-primary">{isMarathi ? 'मुख्य कार्यालय पत्ता' : 'Head Office Address'}</h2>
-          <div className="mt-5 space-y-3 text-sm text-slate-700 md:text-base">
-            <p>
-              <span className="font-semibold text-slate-900">{isMarathi ? 'पत्ता' : 'Address'}:</span>{' '}
-              {isMarathi
-                ? 'यशदा हाईटस्, काकडे बिल्डींग, नाईकवाडी नगर, श्री विसर्जन विहीरी शेजारी धाराशिव -413501'
-                : 'Yashada Heights, Kakade Building, Naikwadi Nagar, near Shri Visarjan Vihiri, Dharashiv - 413501'}
-            </p>
-            <p>
-              <span className="font-semibold text-slate-900">{isMarathi ? 'फोन' : 'Phone'}:</span> +91 12345 67890
-            </p>
-            <p>
-              <span className="font-semibold text-slate-900">{isMarathi ? 'ईमेल' : 'Email'}:</span> info@yashadabank.in
-            </p>
+      <FadeInSection>
+        <section>
+          <SectionTitle title="आमच्या कार्यरत शाखा" />
+          <div className="mt-6">
+            <BranchGrid highlightMain />
           </div>
-        </article>
-
-        <form className="bank-card space-y-4">
-          <h2 className="text-xl font-semibold text-brand-primary">{isMarathi ? 'संदेश पाठवा' : 'Send Message'}</h2>
-          <input
-            type="text"
-            placeholder={isMarathi ? 'नाव' : 'Name'}
-            className="w-full rounded-xl border border-blue-200 px-4 py-3 text-sm outline-none ring-brand-secondary transition focus:ring-2"
-          />
-          <input
-            type="tel"
-            placeholder={isMarathi ? 'फोन' : 'Phone'}
-            className="w-full rounded-xl border border-blue-200 px-4 py-3 text-sm outline-none ring-brand-secondary transition focus:ring-2"
-          />
-          <input
-            type="email"
-            placeholder={isMarathi ? 'ईमेल' : 'Email'}
-            className="w-full rounded-xl border border-blue-200 px-4 py-3 text-sm outline-none ring-brand-secondary transition focus:ring-2"
-          />
-          <textarea
-            rows={5}
-            placeholder={isMarathi ? 'संदेश' : 'Message'}
-            className="w-full rounded-xl border border-blue-200 px-4 py-3 text-sm outline-none ring-brand-secondary transition focus:ring-2"
-          />
-          <button
-            type="button"
-            className="rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800"
-          >
-            {isMarathi ? 'सबमिट करा' : 'Submit'}
-          </button>
-        </form>
-      </div>
-
-      <section className="mt-10">
-        <h2 className="section-title">{isMarathi ? 'शाखा लोकेटर' : 'Branch Locator'}</h2>
-
-        <div className="mt-6 rounded-2xl border border-blue-100 bg-white p-4 shadow-card">
-          <div className="flex h-64 items-center justify-center rounded-xl border border-dashed border-blue-300 bg-blue-50 text-sm text-slate-500">
-            {isMarathi ? 'गूगल मॅप येथे जोडा' : 'Add Google Map Here'}
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {branches.map((branch) => (
-            <article key={branch.nameMr} className="bank-card p-5">
-              <h3 className="text-base font-semibold text-brand-primary">{isMarathi ? branch.nameMr : branch.nameEn}</h3>
-              <p className="mt-2 text-sm text-slate-600">{isMarathi ? branch.addressMr : branch.addressEn}</p>
-              <p className="mt-2 text-sm font-medium text-slate-700">{isMarathi ? 'फोन' : 'Phone'}: {branch.phone}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </section>
+        </section>
+      </FadeInSection>
+    </div>
   );
 };
 

@@ -3,196 +3,174 @@ import {
   BuildingLibraryIcon,
   CreditCardIcon,
   DevicePhoneMobileIcon,
-  HomeModernIcon,
-  MapPinIcon,
-  TruckIcon,
   UserGroupIcon
 } from '@heroicons/react/24/outline';
-import homeDepositScheme from '../assets/home-deposit-scheme.png';
-import homeHeroBanner from '../assets/home-hero-banner.png';
-import bankLogo from '../assets/bank_logo.png';
-import { useLanguage } from '../context/LanguageContext';
+import { BadgePercent, Clock3, Handshake, Landmark, ShieldCheck, Smartphone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import PageHero from '../components/PageHero';
+import Card from '../components/Card';
+import SectionTitle from '../components/SectionTitle';
+import LoanEmiCalculator from '../components/LoanEmiCalculator';
+import Announcements from '../components/Announcements';
+import FacebookUpdates from '../components/FacebookUpdates';
+import BranchGrid from '../components/BranchGrid';
+import FadeInSection from '../components/FadeInSection';
+import { useSeo, getOrganizationSchema } from '../hooks/useSeo';
 
 const Home = () => {
-  const { language } = useLanguage();
-  const isMarathi = language === 'mr';
+  const { t } = useTranslation();
 
-  const services = [
-    {
-      titleMr: 'बचत खाते',
-      titleEn: 'Savings Account',
-      icon: BuildingLibraryIcon
-    },
-    {
-      titleMr: 'ठेवी',
-      titleEn: 'Deposits',
-      icon: BanknotesIcon
-    },
-    {
-      titleMr: 'कर्ज',
-      titleEn: 'Loans',
-      icon: CreditCardIcon
-    },
-    {
-      titleMr: 'एटीएम सेवा',
-      titleEn: 'ATM Services',
-      icon: CreditCardIcon
-    },
-    {
-      titleMr: 'मोबाईल बँकिंग',
-      titleEn: 'Mobile Banking',
-      icon: DevicePhoneMobileIcon
-    }
+  useSeo({
+    title: 'Yashada Bank | Multi-State Cooperative Credit Society',
+    description: 'Trusted cooperative credit services in Maharashtra for deposits, loans, member support, and branch banking.',
+    path: '/'
+  });
+
+  const quickServices = [
+    { icon: BuildingLibraryIcon, label: t('home.quick.savings') },
+    { icon: BanknotesIcon, label: t('home.quick.fixedDeposit') },
+    { icon: CreditCardIcon, label: t('home.quick.loan') },
+    { icon: DevicePhoneMobileIcon, label: t('home.quick.mobile') },
+    { icon: UserGroupIcon, label: t('home.quick.memberSupport') }
   ];
 
-  const deposits = [
-    { mr: 'आवर्ती ठेव', en: 'Recurring Deposit' },
-    { mr: 'मुदत ठेव', en: 'Fixed Deposit' },
-    { mr: 'मासिक ठेव', en: 'Monthly Deposit' }
-  ];
-
-  const loans = [
-    { titleMr: 'गोल्ड लोन', titleEn: 'Gold Loan', icon: BanknotesIcon },
-    { titleMr: 'वैयक्तिक कर्ज', titleEn: 'Personal Loan', icon: UserGroupIcon },
-    { titleMr: 'वाहन कर्ज', titleEn: 'Vehicle Loan', icon: TruckIcon },
-    { titleMr: 'व्यवसाय कर्ज', titleEn: 'Business Loan', icon: HomeModernIcon }
-  ];
-
-  const branches = [
-    { nameMr: 'धाराशिव मुख्य शाखा', nameEn: 'Dharashiv Main Branch', addressMr: 'धाराशिव शहर', addressEn: 'Dharashiv City' },
-    { nameMr: 'तुळजापूर शाखा', nameEn: 'Tuljapur Branch', addressMr: 'बस स्टँड जवळ, तुळजापूर', addressEn: 'Near Bus Stand, Tuljapur' },
-    { nameMr: 'कळंब शाखा', nameEn: 'Kalamb Branch', addressMr: 'मुख्य बाजारपेठ, कळंब', addressEn: 'Main Market, Kalamb' },
-    { nameMr: 'भूम शाखा', nameEn: 'Bhoom Branch', addressMr: 'नगर रोड, भूम', addressEn: 'Nagar Road, Bhoom' }
+  const depositList = [t('home.deposits.recurring'), t('home.deposits.fixed'), t('home.deposits.monthly')];
+  const loanList = [t('loan.gold'), t('loan.personal'), t('loan.vehicle'), t('loan.business')];
+  const whyChoose = [
+    {
+      icon: ShieldCheck,
+      title: t('home.whyChoose.items.trustedTitle'),
+      subtitle: t('home.whyChoose.items.trustedSubtitle')
+    },
+    {
+      icon: Landmark,
+      title: t('home.whyChoose.items.networkTitle'),
+      subtitle: t('home.whyChoose.items.networkSubtitle')
+    },
+    { icon: Clock3, title: t('home.whyChoose.items.fastTitle'), subtitle: t('home.whyChoose.items.fastSubtitle') },
+    {
+      icon: Handshake,
+      title: t('home.whyChoose.items.relationshipTitle'),
+      subtitle: t('home.whyChoose.items.relationshipSubtitle')
+    },
+    { icon: BadgePercent, title: t('home.whyChoose.items.ratesTitle'), subtitle: t('home.whyChoose.items.ratesSubtitle') },
+    { icon: Smartphone, title: t('home.whyChoose.items.digitalTitle'), subtitle: t('home.whyChoose.items.digitalSubtitle') }
   ];
 
   return (
-    <div className="bg-slate-50 text-slate-800">
-      <section className="bank-container py-12 md:py-16">
-        <div className="grid items-center gap-8 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary p-8 text-white shadow-card lg:grid-cols-2">
-          <div>
-            <p className="text-sm text-blue-100">{isMarathi ? 'विश्वसनीय सहकारी बँकिंग' : 'Trusted Cooperative Banking'}</p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">
-              {isMarathi ? 'विश्वासाचे नाते, समृद्ध भविष्य' : 'Trusted Relations, Prosperous Future'}
-            </h2>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button className="rounded-full bg-brand-accent px-5 py-2.5 text-sm font-semibold text-slate-900">
-                {isMarathi ? 'खाते उघडा' : 'Open Account'}
-              </button>
-              <button className="rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold text-white">
-                {isMarathi ? 'कर्जासाठी अर्ज करा' : 'Apply for Loan'}
-              </button>
-            </div>
-          </div>
+    <div className="space-y-14 py-10">
+      <FadeInSection className="bank-container">
+        <PageHero
+          title={t('home.title')}
+          description={t('home.subtitle')}
+          actions={
+            <>
+              <Link to="/contact-us" className="rounded-md bg-white px-5 py-2.5 text-base font-semibold text-brand-primary">
+                {t('home.ctaPrimary')}
+              </Link>
+              <Link
+                to="/loan-services"
+                className="rounded-md border border-white/60 px-5 py-2.5 text-base font-semibold text-white"
+              >
+                {t('home.ctaSecondary')}
+              </Link>
+            </>
+          }
+        />
+      </FadeInSection>
 
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-5">
-            <img src={homeHeroBanner} alt="Hero Banner" className="h-56 w-full rounded-xl object-cover" />
-          </div>
-        </div>
-      </section>
-
-      <section className="bank-container py-12">
-        <h3 className="section-title">{isMarathi ? 'बँकिंग सेवा' : 'Banking Services'}</h3>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
-          {services.map((service) => (
-            <div key={service.titleMr} className="bank-card flex flex-col items-start gap-3 p-5">
-              <service.icon className="h-8 w-8 text-brand-primary" />
-              <p className="text-sm font-semibold text-slate-700">{isMarathi ? service.titleMr : service.titleEn}</p>
-            </div>
+      <FadeInSection className="bank-container">
+        <SectionTitle title={t('home.quickServices')} />
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          {quickServices.map((item) => (
+            <Card key={item.label} className="transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <item.icon className="h-7 w-7 text-brand-primary" />
+              <p className="mt-3 text-base font-semibold text-brand-darkText">{item.label}</p>
+            </Card>
           ))}
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bank-container py-12">
-        <h3 className="section-title">{isMarathi ? 'ठेवी योजना' : 'Deposit Schemes'}</h3>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {deposits.map((item) => (
-            <div key={item.mr} className="bank-card">
-              <h4 className="text-lg font-semibold text-brand-primary">{isMarathi ? item.mr : item.en}</h4>
-              <div className="mt-4 rounded-xl bg-blue-50 p-4">
-                <img src={homeDepositScheme} alt={isMarathi ? item.mr : item.en} className="h-32 w-full rounded-lg object-cover" />
-              </div>
-            </div>
+      <FadeInSection className="bank-container">
+        <SectionTitle title={t('home.whyChoose.title')} />
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {whyChoose.map((item) => (
+            <Card key={item.title} className="transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <item.icon className="h-7 w-7 text-brand-primary" />
+              <h3 className="mt-3 text-lg font-bold text-brand-darkText">{item.title}</h3>
+              <p className="mt-2 text-base text-brand-secondaryText">{item.subtitle}</p>
+            </Card>
           ))}
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bank-container py-12">
-        <h3 className="section-title">{isMarathi ? 'कर्ज योजना' : 'Loan Schemes'}</h3>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {loans.map((loan) => (
-            <div key={loan.titleMr} className="bank-card">
-              <loan.icon className="h-8 w-8 text-brand-primary" />
-              <h4 className="mt-3 text-lg font-semibold text-slate-800">{isMarathi ? loan.titleMr : loan.titleEn}</h4>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="bank-container py-12">
-        <div className="grid items-center gap-8 rounded-3xl bg-white p-8 shadow-card lg:grid-cols-2">
-          <div>
-            <h3 className="section-title">{isMarathi ? 'संस्थेविषयी' : 'About Institution'}</h3>
-            <h4 className="mt-3 text-xl font-bold text-brand-primary">
-              {isMarathi ? 'यशदा मल्टिस्टेट को.ऑप.क्रेडिट' : 'Yashada Multistate Co-op Credit'}
-            </h4>
-            <p className="mt-4 text-sm leading-7 text-slate-600 md:text-base">
-              {isMarathi
-                ? 'यशदा मल्टीस्टेट ही अशी बँक आहे जी फक्त स्वप्नच दाखवत नाही तर ती पूर्ण करण्याचे सामर्थ्य देते. शेतकरी, नवउद्योजक, महिला आणि समाजातील सर्व घटकांना प्रेरणा व आर्थिक पाठबळ देण्यासाठी यशदा सतत कार्यरत आहे.'
-                : 'Yashada Multistate is a bank that not only inspires dreams but also empowers people to realize them. We actively support farmers, new entrepreneurs, women, and all sections of society with financial strength and guidance.'}
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-xl bg-blue-50 p-4 text-center">
-                <p className="text-2xl font-extrabold text-brand-primary">10000+</p>
-                <p className="text-xs text-slate-500">{isMarathi ? 'समाधानी खातेदार' : 'Satisfied Account Holders'}</p>
-              </div>
-              <div className="rounded-xl bg-blue-50 p-4 text-center">
-                <p className="text-2xl font-extrabold text-brand-primary">45</p>
-                <p className="text-xs text-slate-500">{isMarathi ? 'प्रशिक्षित कर्मचारी' : 'Trained Employees'}</p>
-              </div>
-              <div className="rounded-xl bg-blue-50 p-4 text-center">
-                <p className="text-2xl font-extrabold text-brand-primary">365</p>
-                <p className="text-xs text-slate-500">{isMarathi ? 'दिवस अखंड सेवा' : 'Days of Continuous Service'}</p>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center justify-center rounded-2xl bg-blue-50 p-5">
-            <img src={bankLogo} alt="Yashada Bank" className="h-64 w-64 rounded-full object-contain" />
+      <FadeInSection className="bank-container grid gap-6 lg:grid-cols-2">
+        <div>
+          <SectionTitle title={t('home.depositOverview')} />
+          <div className="mt-6 grid gap-4">
+            {depositList.map((item) => (
+              <Card key={item} className="transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-lg font-bold text-brand-darkText">{item}</h3>
+                <p className="mt-1 text-base text-brand-secondaryText">{t('home.deposits.desc')}</p>
+              </Card>
+            ))}
           </div>
         </div>
-      </section>
 
-      <section className="bank-container py-12">
-        <div className="grid items-center gap-8 rounded-3xl bg-gradient-to-r from-blue-50 to-amber-50 p-8 shadow-card lg:grid-cols-3">
-          <div className="flex items-center justify-center rounded-2xl bg-white p-4 lg:col-span-1">
-            <img src={bankLogo} alt="Founder" className="h-56 w-56 rounded-full object-contain" />
-          </div>
-          <div className="lg:col-span-2">
-            <h3 className="section-title">{isMarathi ? 'संस्थापक' : 'Founder'}</h3>
-            <p className="mt-2 text-lg font-semibold text-brand-primary">
-              {isMarathi ? 'प्रा. सुधीर दत्तात्रय सस्ते' : 'Prof. Sudhir Dattatray Saste'}
-            </p>
-            <p className="text-sm text-slate-500">{isMarathi ? 'संस्थापक / चेअरमन' : 'Founder / Chairman'}</p>
-            <p className="mt-4 text-sm leading-7 text-slate-700 md:text-base">
-              {isMarathi
-                ? 'गेली 12 वर्षे यशदा मल्टिस्टेट ग्राहकांच्या सेवेत तत्पर आहे. सातही शाखा ग्राहककेंद्री सेवा देत असून 99% कर्जवसुली धोरणामुळे बँकेने मजबूत प्रगती केली आहे.'
-                : 'For the last 12 years, Yashada Multistate has remained committed to customer service. All seven branches are customer-focused, and the bank has achieved strong growth through its 99% loan recovery policy.'}
-            </p>
+        <div>
+          <SectionTitle title={t('home.loanOverview')} />
+          <div className="mt-6 grid gap-4">
+            {loanList.map((item) => (
+              <Card key={item} className="transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <h3 className="text-lg font-bold text-brand-darkText">{item}</h3>
+                <p className="mt-1 text-base text-brand-secondaryText">{t('loan.description')}</p>
+              </Card>
+            ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bank-container py-12">
-        <h3 className="section-title">{isMarathi ? 'शाखा लोकेटर' : 'Branch Locator'}</h3>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {branches.map((branch) => (
-            <div key={branch.nameMr} className="bank-card">
-              <MapPinIcon className="h-7 w-7 text-brand-primary" />
-              <h4 className="mt-3 text-base font-semibold text-slate-800">{isMarathi ? branch.nameMr : branch.nameEn}</h4>
-              <p className="mt-2 text-sm text-slate-600">{isMarathi ? branch.addressMr : branch.addressEn}</p>
-            </div>
-          ))}
+      <FadeInSection className="bank-container">
+        <SectionTitle title={t('home.emiPreview')} />
+        <div className="mt-6">
+          <LoanEmiCalculator />
         </div>
-      </section>
+      </FadeInSection>
+
+      <FadeInSection className="bank-container">
+        <Announcements />
+      </FadeInSection>
+
+      <FadeInSection className="bank-container">
+        <FacebookUpdates />
+      </FadeInSection>
+
+      <FadeInSection className="bank-container">
+        <SectionTitle title="आमची मुख्य शाखा (Main Branch Location)" />
+        <div className="mt-6 overflow-hidden rounded-3xl border border-red-100 bg-white p-4 shadow-card md:p-5">
+          <iframe
+            title="Yashada Dharashiv Main Branch Map"
+            width="100%"
+            height="400"
+            loading="lazy"
+            className="w-full rounded-2xl"
+            style={{ border: 0 }}
+            allowFullScreen
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3790.467662956637!2d76.03578217474092!3d18.188420682841855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5a3d32828fb1f%3A0xe0d0bf8f2cd1caf6!2sYashada%20multi-state%20co-op!5e0!3m2!1sen!2sin!4v1773251013053!5m2!1sen!2sin"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      </FadeInSection>
+
+      <FadeInSection className="bank-container">
+        <SectionTitle title="आमच्या कार्यरत शाखा" />
+        <div className="mt-6">
+          <BranchGrid highlightMain />
+        </div>
+      </FadeInSection>
+
+      <script type="application/ld+json">{JSON.stringify(getOrganizationSchema())}</script>
     </div>
   );
 };

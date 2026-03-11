@@ -1,4 +1,6 @@
-import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from 'react-i18next';
+import PageHero from '../components/PageHero';
+import FadeInSection from '../components/FadeInSection';
 
 const galleryItems = [
   {
@@ -28,38 +30,37 @@ const galleryItems = [
 ];
 
 const Gallery = () => {
-  const { language } = useLanguage();
-  const isMarathi = language === 'mr';
+  const { i18n } = useTranslation();
+  const isMarathi = i18n.language === 'mr';
 
   return (
-    <section className="bank-container py-12 md:py-16">
-      <div className="grid items-center gap-8 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary p-8 text-white shadow-card lg:grid-cols-2">
-        <div>
-          <h1 className="text-3xl font-extrabold leading-tight md:text-4xl">{isMarathi ? 'गॅलरी' : 'Gallery'}</h1>
-          <p className="mt-3 text-sm text-blue-100 md:text-base">
-            {isMarathi
-              ? 'आमच्या बँकेचे कार्यक्रम, उपक्रम आणि संस्मरणीय क्षण.'
-              : 'Programs, initiatives, and memorable moments of our bank.'}
-          </p>
-        </div>
+    <section className="bank-container space-y-10 py-12 md:py-16">
+      <PageHero
+        title={isMarathi ? 'गॅलरी' : 'Gallery'}
+        description={isMarathi ? 'आमच्या बँकेचे कार्यक्रम, उपक्रम आणि संस्मरणीय क्षण.' : 'Programs, initiatives, and memorable moments of our bank.'}
+      />
 
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-5">
-          <div className="flex h-56 items-center justify-center rounded-xl border border-dashed border-white/40 text-sm text-blue-100">
+      <FadeInSection>
+        <div className="rounded-2xl border border-red-100 bg-white p-5 shadow-card">
+          <div className="flex h-56 items-center justify-center rounded-xl border border-dashed border-red-200 text-base text-brand-secondaryText">
             {isMarathi ? 'गॅलरी बॅनर प्रतिमा' : 'Gallery Banner Image'}
           </div>
         </div>
-      </div>
+      </FadeInSection>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {galleryItems.map((item) => (
-          <article key={item.captionMr} className="group overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-card">
+          <article
+            key={item.captionMr}
+            className="group overflow-hidden rounded-2xl border border-red-100 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          >
             <div className="relative h-56 overflow-hidden">
-              <div className="flex h-full items-center justify-center bg-blue-50 text-sm text-slate-500">
+              <div className="flex h-full items-center justify-center bg-red-50 text-base text-slate-500">
                 {isMarathi ? 'फोटो येथे जोडा' : 'Add Photo Here'}
               </div>
             </div>
             <div className="p-4">
-              <h2 className="text-base font-semibold text-brand-primary">{isMarathi ? item.captionMr : item.captionEn}</h2>
+              <h2 className="text-lg font-semibold text-brand-primary">{isMarathi ? item.captionMr : item.captionEn}</h2>
             </div>
           </article>
         ))}
