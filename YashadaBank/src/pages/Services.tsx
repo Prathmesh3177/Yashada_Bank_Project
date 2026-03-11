@@ -1,47 +1,48 @@
-import ServiceCard from '../components/ServiceCard';
+import { useLanguage } from '../context/LanguageContext';
 
-const serviceList = [
-  {
-    title: 'इंटरनेट बँकिंग',
-    description: 'कुठूनही खाते व्यवस्थापन, फंड ट्रान्सफर आणि बिल पेमेंटची सुविधा.',
-    icon: '🌐'
-  },
-  {
-    title: 'ATM सेवा',
-    description: '24x7 रोख रक्कम काढणे व बॅलन्स तपासणी.',
-    icon: '🏧'
-  },
-  {
-    title: 'SMS अलर्ट',
-    description: 'प्रत्येक व्यवहारासाठी त्वरित संदेश सेवा.',
-    icon: '📩'
-  },
-  {
-    title: 'मायक्रो इन्शुरन्स',
-    description: 'किफायतशीर विमा योजनांद्वारे आर्थिक संरक्षण.',
-    icon: '🛡️'
-  },
-  {
-    title: 'पेन्शन वितरण',
-    description: 'ज्येष्ठ नागरिकांसाठी सुरक्षित आणि नियोजित पेन्शन सेवा.',
-    icon: '👴'
-  },
-  {
-    title: 'UPI पेमेंट',
-    description: 'झटपट पेमेंट, क्यूआर कोड स्कॅन आणि व्यापारी व्यवहार.',
-    icon: '⚡'
-  }
+const services = [
+  { titleMr: 'आधार बँकिंग', titleEn: 'Aadhaar Banking', icon: '🪪' },
+  { titleMr: 'मिनी एटीएम', titleEn: 'Mini ATM', icon: '🏧' },
+  { titleMr: 'इंटरनेट बँकिंग', titleEn: 'Internet Banking', icon: '🌐' },
+  { titleMr: 'मोबाईल बँकिंग', titleEn: 'Mobile Banking', icon: '📱' },
+  { titleMr: 'एसएमएस बँकिंग', titleEn: 'SMS Banking', icon: '💬' },
+  { titleMr: 'आरटीजीएस', titleEn: 'RTGS', icon: '🏛️' },
+  { titleMr: 'एनईएफटी', titleEn: 'NEFT', icon: '🔁' },
+  { titleMr: 'आयएमपीएस', titleEn: 'IMPS', icon: '⚡' },
+  { titleMr: 'क्यूआर पेमेंट', titleEn: 'QR Payment', icon: '🔳' }
 ];
 
 const Services = () => {
-  return (
-    <section className="bank-container py-12">
-      <h1 className="section-title">बँक सेवा</h1>
-      <p className="section-subtitle">डिजिटल आणि पारंपरिक सेवांचा संतुलित अनुभव.</p>
+  const { language } = useLanguage();
+  const isMarathi = language === 'mr';
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {serviceList.map((service) => (
-          <ServiceCard key={service.title} {...service} />
+  return (
+    <section className="bank-container py-12 md:py-16">
+      <div className="grid items-center gap-8 rounded-3xl bg-gradient-to-r from-brand-primary to-brand-secondary p-8 text-white shadow-card lg:grid-cols-2">
+        <div>
+          <h1 className="text-3xl font-extrabold leading-tight md:text-4xl">{isMarathi ? 'आमच्या सेवा' : 'Our Services'}</h1>
+          <p className="mt-3 text-sm text-blue-100 md:text-base">
+            {isMarathi
+              ? 'आपल्या दैनंदिन बँकिंगसाठी सुरक्षित आणि वेगवान सुविधा.'
+              : 'Safe and fast facilities for your daily banking needs.'}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/20 bg-white/10 p-5">
+          <div className="flex h-56 items-center justify-center rounded-xl border border-dashed border-white/40 text-sm text-blue-100">
+            {isMarathi ? 'बँकिंग सेवा प्रतिमा' : 'Banking Services Image'}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <article key={service.titleMr} className="bank-card flex items-center gap-4 p-5">
+            <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-2xl">
+              {service.icon}
+            </div>
+            <h2 className="text-base font-semibold text-brand-primary md:text-lg">{isMarathi ? service.titleMr : service.titleEn}</h2>
+          </article>
         ))}
       </div>
     </section>
